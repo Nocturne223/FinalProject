@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "527882203234",
+    "project_id": "sims-dev-47238",
+    "storage_bucket": "sims-dev-47238.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527882203234:android:848bab0ca43682e8a9613b",
+        "android_client_info": {
+          "package_name": "com.example.finalproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUkpXkZfErTfeOxeREU7LWVfgZIa0N6kU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
