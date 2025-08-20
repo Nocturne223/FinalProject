@@ -25,10 +25,18 @@ class SummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.surfaceVariant,
+          width: 1,
+        ),
+      ),
+      margin: const EdgeInsets.all(16),
       child: Container(
-        width: 220,
-        padding: const EdgeInsets.all(16),
+        constraints: const BoxConstraints(minWidth: 180, maxWidth: 320),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,41 +45,62 @@ class SummaryCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: color,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(color: color),
                 ),
-                Icon(icon, color: color, size: 24),
+                Container(
+                  decoration: BoxDecoration(
+                    color: color.withOpacity(0.08),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.all(6),
+                  child: Icon(icon, color: color, size: 24),
+                ),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             Text(
               value,
-              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             miniGraph,
-            const SizedBox(height: 8),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    Icon(Icons.trending_up, color: color, size: 16),
-                    const SizedBox(width: 4),
-                    Text(percent, style: TextStyle(color: color)),
+                    Icon(Icons.trending_up, color: color, size: 18),
+                    const SizedBox(width: 6),
+                    Text(
+                      percent,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyLarge?.copyWith(color: color),
+                    ),
                   ],
                 ),
-                DropdownButton<String>(
-                  value: timeFilter,
-                  items: ['Weekly', 'Monthly', 'Yearly']
-                      .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                      .toList(),
-                  onChanged: onTimeFilterChanged,
-                  underline: Container(),
-                  style: const TextStyle(fontSize: 12, color: Colors.black),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surfaceVariant,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: DropdownButton<String>(
+                    value: timeFilter,
+                    items: ['Weekly', 'Monthly', 'Yearly']
+                        .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                        .toList(),
+                    onChanged: onTimeFilterChanged,
+                    underline: Container(),
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ],
             ),

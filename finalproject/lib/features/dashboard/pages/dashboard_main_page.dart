@@ -5,12 +5,13 @@ import '../widgets/summary_card.dart';
 import '../widgets/revenue_chart.dart';
 import '../widgets/pie_chart.dart';
 import '../widgets/top_sale_list.dart';
-import 'package:finalproject/core/infrastructure/seed_users.dart';
-import 'package:finalproject/core/infrastructure/seed_categories.dart';
-import 'package:finalproject/core/infrastructure/seed_transactions.dart';
+import '../../product/product_page.dart';
+import '../../alerts/alerts_page.dart';
+import '../../reports/reports_page.dart';
+import '../../auth/auth_page.dart';
 
 class DashboardMainPage extends StatefulWidget {
-  const DashboardMainPage({Key? key}) : super(key: key);
+  const DashboardMainPage({super.key});
 
   @override
   State<DashboardMainPage> createState() => _DashboardMainPageState();
@@ -23,24 +24,9 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
     setState(() => _isSeeding = true);
     await seedProductsFromCsv();
     setState(() => _isSeeding = false);
-  }
-
-  Future<void> _seedUsers() async {
-    setState(() => _isSeeding = true);
-    await seedUsersFromCsv();
-    setState(() => _isSeeding = false);
-  }
-
-  Future<void> _seedCategories() async {
-    setState(() => _isSeeding = true);
-    await seedCategoriesFromCsv();
-    setState(() => _isSeeding = false);
-  }
-
-  Future<void> _seedTransactions() async {
-    setState(() => _isSeeding = true);
-    await seedTransactionsFromCsv();
-    setState(() => _isSeeding = false);
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Seeding complete!')));
   }
 
   String _productTrendType = 'Monthly';
@@ -59,7 +45,110 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            // ...existing code...
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.inventory_2,
+                      size: 35,
+                      color: Colors.blue,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Ecomus',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Smart Inventory Management',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.8),
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.dashboard),
+              title: const Text('Dashboard'),
+              selected: true,
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.inventory_2),
+              title: const Text('Products'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProductPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.notifications),
+              title: const Text('Alerts'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AlertsPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.assessment),
+              title: const Text('Reports'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ReportsPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Authentication'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AuthPage()),
+                );
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                Navigator.pop(context);
+                // TODO: Implement settings page
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.help),
+              title: const Text('Help & Support'),
+              onTap: () {
+                Navigator.pop(context);
+                // TODO: Implement help page
+              },
+            ),
           ],
         ),
       ),
@@ -539,7 +628,7 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
                             _productTrendType = val ?? 'Monthly';
                           });
                         },
-                        miniGraph: Container(
+                        miniGraph: SizedBox(
                           height: 32,
                           width: 60,
                           child: CustomPaint(
@@ -562,7 +651,7 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
                             _stockTrendType = val ?? 'Monthly';
                           });
                         },
-                        miniGraph: Container(
+                        miniGraph: SizedBox(
                           height: 32,
                           width: 60,
                           child: CustomPaint(
@@ -585,7 +674,7 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
                             _categoryTrendType = val ?? 'Monthly';
                           });
                         },
-                        miniGraph: Container(
+                        miniGraph: SizedBox(
                           height: 32,
                           width: 60,
                           child: CustomPaint(
@@ -608,7 +697,7 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
                             _supplierTrendType = val ?? 'Monthly';
                           });
                         },
-                        miniGraph: Container(
+                        miniGraph: SizedBox(
                           height: 32,
                           width: 60,
                           child: CustomPaint(
@@ -628,54 +717,12 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
           ),
         ),
       ),
-      floatingActionButton: Stack(
-        alignment: Alignment.bottomRight,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 0, right: 0),
-            child: FloatingActionButton.extended(
-              onPressed: _isSeeding ? null : _seedProducts,
-              label: _isSeeding
-                  ? const Text('Seeding...')
-                  : const Text('Seed Products'),
-              icon: const Icon(Icons.cloud_upload),
-              heroTag: 'seedProducts',
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 70, right: 0),
-            child: FloatingActionButton.extended(
-              onPressed: _isSeeding ? null : _seedUsers,
-              label: _isSeeding
-                  ? const Text('Seeding...')
-                  : const Text('Seed Users'),
-              icon: const Icon(Icons.person_add),
-              heroTag: 'seedUsers',
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 140, right: 0),
-            child: FloatingActionButton.extended(
-              onPressed: _isSeeding ? null : _seedCategories,
-              label: _isSeeding
-                  ? const Text('Seeding...')
-                  : const Text('Seed Categories'),
-              icon: const Icon(Icons.category),
-              heroTag: 'seedCategories',
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 210, right: 0),
-            child: FloatingActionButton.extended(
-              onPressed: _isSeeding ? null : _seedTransactions,
-              label: _isSeeding
-                  ? const Text('Seeding...')
-                  : const Text('Seed Transactions'),
-              icon: const Icon(Icons.receipt_long),
-              heroTag: 'seedTransactions',
-            ),
-          ),
-        ],
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _isSeeding ? null : _seedProducts,
+        label: _isSeeding
+            ? const Text('Seeding...')
+            : const Text('Seed Products'),
+        icon: const Icon(Icons.cloud_upload),
       ),
     );
   }
