@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RevenueChart extends StatelessWidget {
-  const RevenueChart({Key? key}) : super(key: key);
+  const RevenueChart({super.key});
 
   @override
   Widget build(BuildContext context) {

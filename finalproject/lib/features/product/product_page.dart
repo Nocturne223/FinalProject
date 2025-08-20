@@ -18,6 +18,98 @@ class _ProductPageState extends State<ProductPage> {
   String _statusFilter = 'All';
   bool _showLowStockOnly = false;
 
+  // Pagination state
+  static const int _pageSize = 200;
+  final List<QueryDocumentSnapshot<Map<String, dynamic>>> _loadedDocuments =
+      <QueryDocumentSnapshot<Map<String, dynamic>>>[];
+  final Set<String> _loadedIds = <String>{};
+  final ScrollController _scrollController = ScrollController();
+  bool _isFetching = false;
+  bool _hasMore = true;
+  QueryDocumentSnapshot<Map<String, dynamic>>? _lastDocument;
+  String _orderByField = 'Product_Name';
+  String? _errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchFirstPage();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (!_hasMore || _isFetching) return;
+    if (!_scrollController.hasClients) return;
+    final double threshold =
+        _scrollController.position.maxScrollExtent * 0.85; // 85% down
+    if (_scrollController.position.pixels >= threshold) {
+      _fetchNextPage();
+    }
+  }
+
+  Future<void> _fetchFirstPage() async {
+    setState(() {
+      _isFetching = true;
+      _errorMessage = null;
+      _loadedDocuments.clear();
+      _loadedIds.clear();
+      _hasMore = true;
+      _lastDocument = null;
+    });
+    await _fetchInternal();
+  }
+
+  Future<void> _fetchNextPage() async {
+    if (!_hasMore || _isFetching) return;
+    await _fetchInternal();
+  }
+
+  Future<void> _fetchInternal() async {
+    try {
+      setState(() {
+        _isFetching = true;
+      });
+
+      Query<Map<String, dynamic>> query = FirebaseFirestore.instance
+          .collection('products')
+          .orderBy(_orderByField)
+          .limit(_pageSize);
+      if (_lastDocument != null) {
+        query = query.startAfterDocument(_lastDocument!);
+      }
+      final QuerySnapshot<Map<String, dynamic>> snapshot = await query.get();
+
+      if (snapshot.docs.isNotEmpty) {
+        for (final doc in snapshot.docs) {
+          if (_loadedIds.add(doc.id)) {
+            _loadedDocuments.add(doc);
+          }
+        }
+        _lastDocument = snapshot.docs.last;
+      }
+
+      setState(() {
+        _hasMore = snapshot.docs.length == _pageSize;
+      });
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Failed to load products: $e';
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isFetching = false;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,122 +199,9 @@ class _ProductPageState extends State<ProductPage> {
 
           // Product List
           Expanded(
-            child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection('products')
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.error_outline,
-                          size: 64,
-                          color: Colors.red[300],
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'Error loading products',
-                          style: TextStyle(
-                            color: Colors.red[600],
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          snapshot.error.toString(),
-                          style: TextStyle(color: Colors.grey[600]),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  );
-                }
-
-                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.inventory_2_outlined,
-                          size: 64,
-                          color: Colors.grey[400],
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'No products found',
-                          style: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Add your first product to get started',
-                          style: TextStyle(color: Colors.grey[500]),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-
-                final products = snapshot.data!.docs
-                    .map(
-                      (doc) => ProductModel.fromMap(
-                        doc.data() as Map<String, dynamic>,
-                      ),
-                    )
-                    .where((product) => _filterProduct(product))
-                    .toList();
-
-                if (products.isEmpty) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.search_off,
-                          size: 64,
-                          color: Colors.grey[400],
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'No products match your filters',
-                          style: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Try adjusting your search or filters',
-                          style: TextStyle(color: Colors.grey[500]),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-
-                return ListView.builder(
-                  padding: const EdgeInsets.all(8.0),
-                  itemCount: products.length,
-                  itemBuilder: (context, index) {
-                    final product = products[index];
-                    return ProductListItem(
-                      product: product,
-                      onEdit: () => _showEditProductDialog(product),
-                      onDelete: () => _showDeleteConfirmation(product),
-                    );
-                  },
-                );
-              },
+            child: RefreshIndicator(
+              onRefresh: _fetchFirstPage,
+              child: _buildPaginatedList(),
             ),
           ),
         ],
@@ -316,18 +295,20 @@ class _ProductPageState extends State<ProductPage> {
     return true;
   }
 
-  void _showAddProductDialog() {
-    showDialog(
+  Future<void> _showAddProductDialog() async {
+    await showDialog(
       context: context,
       builder: (context) => const AddEditProductDialog(),
     );
+    if (mounted) await _fetchFirstPage();
   }
 
-  void _showEditProductDialog(ProductModel product) {
-    showDialog(
+  Future<void> _showEditProductDialog(ProductModel product) async {
+    await showDialog(
       context: context,
       builder: (context) => AddEditProductDialog(product: product),
     );
+    if (mounted) await _fetchFirstPage();
   }
 
   void _showDeleteConfirmation(ProductModel product) {
@@ -364,6 +345,9 @@ class _ProductPageState extends State<ProductPage> {
           .delete();
 
       if (mounted) {
+        // Remove locally if present
+        _loadedDocuments.removeWhere((doc) => doc.id == product.productId);
+        _loadedIds.remove(product.productId);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('${product.productName} deleted successfully'),
@@ -381,5 +365,107 @@ class _ProductPageState extends State<ProductPage> {
         );
       }
     }
+  }
+
+  Widget _buildPaginatedList() {
+    if (_errorMessage != null) {
+      return ListView(
+        controller: _scrollController,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              _errorMessage!,
+              style: const TextStyle(color: Colors.redAccent),
+            ),
+          ),
+          TextButton(onPressed: _fetchFirstPage, child: const Text('Retry')),
+        ],
+      );
+    }
+
+    if (_loadedDocuments.isEmpty && _isFetching) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (_loadedDocuments.isEmpty) {
+      return ListView(
+        controller: _scrollController,
+        children: [
+          const SizedBox(height: 80),
+          Center(
+            child: Column(
+              children: [
+                Icon(
+                  Icons.inventory_2_outlined,
+                  size: 64,
+                  color: Colors.grey[400],
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'No products found',
+                  style: TextStyle(color: Colors.grey[600], fontSize: 18),
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+    }
+
+    // Convert to ProductModel and client-filter the current window
+    final products = _loadedDocuments
+        .map((doc) => ProductModel.fromMap(doc.data()))
+        .where((p) => _filterProduct(p))
+        .toList();
+
+    if (products.isEmpty && !_hasMore && !_isFetching) {
+      return ListView(
+        controller: _scrollController,
+        children: const [
+          SizedBox(height: 80),
+          Center(child: Text('No products match your filters')),
+        ],
+      );
+    }
+
+    return ListView.separated(
+      controller: _scrollController,
+      padding: const EdgeInsets.all(8.0),
+      itemCount: products.length + 1,
+      separatorBuilder: (_, __) => const Divider(height: 1),
+      itemBuilder: (context, index) {
+        if (index == products.length) {
+          if (_isFetching) {
+            return const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: Center(child: CircularProgressIndicator()),
+            );
+          }
+          if (!_hasMore) {
+            return const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: Center(child: Text('No more products')),
+            );
+          }
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Center(
+              child: OutlinedButton(
+                onPressed: _fetchNextPage,
+                child: const Text('Load more'),
+              ),
+            ),
+          );
+        }
+
+        final product = products[index];
+        return ProductListItem(
+          product: product,
+          onEdit: () => _showEditProductDialog(product),
+          onDelete: () => _showDeleteConfirmation(product),
+        );
+      },
+    );
   }
 }
