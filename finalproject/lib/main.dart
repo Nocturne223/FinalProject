@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -17,28 +16,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        // Add your BLoC providers here
-      ],
-      child: MaterialApp(
-        title: 'Inventory Manager',
-        theme: ThemeData(
-          brightness: Brightness.dark,
-          useMaterial3: true,
-          textTheme: GoogleFonts.assistantTextTheme(
-            Theme.of(context).textTheme.apply(
-                  bodyColor: AppColors.mainTextColor3,
-                ),
-          ),
-          scaffoldBackgroundColor: AppColors.pageBackground,
-          colorScheme: ColorScheme.dark(
-            primary: AppColors.primary,
-            secondary: AppColors.accent,
-          ),
+    return MaterialApp(
+      title: 'Inventory Manager',
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        useMaterial3: true,
+        textTheme: GoogleFonts.assistantTextTheme(
+          Theme.of(
+            context,
+          ).textTheme.apply(bodyColor: AppColors.mainTextColor3),
         ),
-        home: const DashboardMainPage(),
+        scaffoldBackgroundColor: AppColors.pageBackground,
+        colorScheme: ColorScheme.dark(
+          primary: AppColors.primary,
+          secondary: AppColors.accent,
+        ),
       ),
+      home: const DashboardMainPage(),
     );
   }
 }
