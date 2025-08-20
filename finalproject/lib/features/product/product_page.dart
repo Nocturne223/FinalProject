@@ -17,6 +17,27 @@ class _ProductPageState extends State<ProductPage> {
   String _categoryFilter = 'All';
   String _statusFilter = 'All';
   bool _showLowStockOnly = false;
+  List<String> _categories = ['All'];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCategories();
+  }
+
+  Future<void> _loadCategories() async {
+    final categoriesSnapshot = await FirebaseFirestore.instance
+        .collection('categories')
+        .orderBy('name')
+        .get();
+
+    setState(() {
+      _categories = [
+        'All',
+        ...categoriesSnapshot.docs.map((doc) => doc['name'] as String),
+      ];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +80,7 @@ class _ProductPageState extends State<ProductPage> {
                       child: _buildFilterDropdown(
                         'Category',
                         _categoryFilter,
-                        [
-                          'All',
-                          'Electronics',
-                          'Clothing',
-                          'Food',
-                          'Books',
-                          'Other',
-                        ],
+                        _categories,
                         (value) {
                           setState(() {
                             _categoryFilter = value ?? 'All';

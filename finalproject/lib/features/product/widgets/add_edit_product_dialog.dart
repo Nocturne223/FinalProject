@@ -231,7 +231,6 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
                                 'Inactive',
                                 'Discontinued',
                                 'Backordered',
-                                'Out of Stock',
                               ],
                               onChanged: (value) {
                                 setState(() {

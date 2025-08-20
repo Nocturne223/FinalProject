@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/models/product.model.dart';
+import 'stock_warning_badge.dart';
 
 class ProductListItem extends StatelessWidget {
   final ProductModel product;
@@ -54,18 +55,12 @@ class ProductListItem extends StatelessWidget {
                       const SizedBox(height: 4),
                       Text(
                         'Category: ${product.category}',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 14,
-                        ),
+                        style: TextStyle(color: Colors.grey[600], fontSize: 14),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         'Supplier: ${product.supplierName}',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 14,
-                        ),
+                        style: TextStyle(color: Colors.grey[600], fontSize: 14),
                       ),
                     ],
                   ),
@@ -82,7 +77,11 @@ class ProductListItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 4),
-                    _buildStockIndicator(isLowStock),
+                    StockWarningBadge(
+                      isLowStock: isLowStock,
+                      stockQuantity: product.stockQuantity,
+                      reorderLevel: product.reorderLevel,
+                    ),
                   ],
                 ),
               ],
@@ -91,10 +90,16 @@ class ProductListItem extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: _buildInfoRow('Stock', '${product.stockQuantity} units'),
+                  child: _buildInfoRow(
+                    'Stock',
+                    '${product.stockQuantity} units',
+                  ),
                 ),
                 Expanded(
-                  child: _buildInfoRow('Reorder Level', '${product.reorderLevel}'),
+                  child: _buildInfoRow(
+                    'Reorder Level',
+                    '${product.reorderLevel}',
+                  ),
                 ),
                 Expanded(
                   child: _buildInfoRow('Location', product.warehouseLocation),
@@ -105,10 +110,16 @@ class ProductListItem extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: _buildInfoRow('Received', _formatDate(product.dateReceived)),
+                  child: _buildInfoRow(
+                    'Received',
+                    _formatDate(product.dateReceived),
+                  ),
                 ),
                 Expanded(
-                  child: _buildInfoRow('Expires', _formatDate(product.expirationDate)),
+                  child: _buildInfoRow(
+                    'Expires',
+                    _formatDate(product.expirationDate),
+                  ),
                 ),
                 Expanded(
                   child: _buildInfoRow('Sales', '${product.salesVolume}'),
@@ -140,7 +151,9 @@ class ProductListItem extends StatelessWidget {
                             ? 'Low stock! Reorder level: ${product.reorderLevel}'
                             : 'Expires soon: ${_formatDate(product.expirationDate)}',
                         style: TextStyle(
-                          color: isLowStock ? Colors.red[700] : Colors.orange[700],
+                          color: isLowStock
+                              ? Colors.red[700]
+                              : Colors.orange[700],
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -166,9 +179,7 @@ class ProductListItem extends StatelessWidget {
                   onPressed: onDelete,
                   icon: const Icon(Icons.delete, size: 18),
                   label: const Text('Delete'),
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.red,
-                  ),
+                  style: TextButton.styleFrom(foregroundColor: Colors.red),
                 ),
               ],
             ),
@@ -181,7 +192,7 @@ class ProductListItem extends StatelessWidget {
   Widget _buildStatusChip(String status) {
     Color chipColor;
     Color textColor;
-    
+
     switch (status.toLowerCase()) {
       case 'active':
         chipColor = Colors.green[100]!;
@@ -217,24 +228,6 @@ class ProductListItem extends StatelessWidget {
     );
   }
 
-  Widget _buildStockIndicator(bool isLowStock) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: isLowStock ? Colors.red[100] : Colors.green[100],
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        isLowStock ? 'Low Stock' : 'In Stock',
-        style: TextStyle(
-          color: isLowStock ? Colors.red[700] : Colors.green[700],
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-    );
-  }
-
   Widget _buildInfoRow(String label, String value) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -250,10 +243,7 @@ class ProductListItem extends StatelessWidget {
         const SizedBox(height: 2),
         Text(
           value,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-          ),
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
