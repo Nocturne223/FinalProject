@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
+import 'pages/login_page.dart';
+import 'pages/register_page.dart';
 
-class AuthPage extends StatelessWidget {
+class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
 
   @override
+  State<AuthPage> createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
+  bool showLogin = true;
+
+  void toggleView() {
+    setState(() {
+      showLogin = !showLogin;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('User Authentication')),
-      body: Center(child: Text('Authentication UI will go here.')),
-    );
+    if (showLogin) {
+      return LoginPage(onCreateAccountTap: toggleView);
+    } else {
+      return RegisterPage(onLoginTap: toggleView);
+    }
   }
 }
