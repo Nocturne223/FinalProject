@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import '../../../core/infrastructure/seed_products.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../widgets/summary_card.dart';
-import '../widgets/revenue_chart.dart';
-import '../widgets/pie_chart.dart';
-import '../widgets/top_sale_list.dart';
 import '../../product/product_page.dart';
 import '../../alerts/alerts_page.dart';
 import '../../reports/reports_page.dart';
 import '../../auth/auth_page.dart';
+import '../../settings/settings_page.dart';
 
 class DashboardMainPage extends StatefulWidget {
   const DashboardMainPage({super.key});
@@ -138,7 +136,10 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
               title: const Text('Settings'),
               onTap: () {
                 Navigator.pop(context);
-                // TODO: Implement settings page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
+                );
               },
             ),
             ListTile(

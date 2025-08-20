@@ -4,10 +4,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'core/theme/app_colors.dart';
 import 'features/dashboard/pages/dashboard_main_page.dart';
+import 'core/theme/theme_mode_notifier.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await ThemeModeController.initialize();
   runApp(const MyApp());
 }
 
@@ -16,23 +18,41 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Inventory Manager',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        useMaterial3: true,
-        textTheme: GoogleFonts.assistantTextTheme(
-          Theme.of(
-            context,
-          ).textTheme.apply(bodyColor: AppColors.mainTextColor3),
-        ),
-        scaffoldBackgroundColor: AppColors.pageBackground,
-        colorScheme: ColorScheme.dark(
-          primary: AppColors.primary,
-          secondary: AppColors.accent,
-        ),
-      ),
-      home: const DashboardMainPage(),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: ThemeModeController.themeMode,
+      builder: (context, themeMode, _) {
+        return MaterialApp(
+          title: 'Inventory Manager',
+          themeMode: themeMode,
+          theme: ThemeData(
+            brightness: Brightness.light,
+            useMaterial3: true,
+            textTheme: GoogleFonts.assistantTextTheme(
+              Theme.of(context).textTheme.apply(bodyColor: Colors.black87),
+            ),
+            scaffoldBackgroundColor: Colors.white,
+            colorScheme: const ColorScheme.light(
+              primary: Colors.blue,
+              secondary: Colors.blueAccent,
+            ),
+          ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            useMaterial3: true,
+            textTheme: GoogleFonts.assistantTextTheme(
+              Theme.of(
+                context,
+              ).textTheme.apply(bodyColor: AppColors.mainTextColor3),
+            ),
+            scaffoldBackgroundColor: AppColors.pageBackground,
+            colorScheme: ColorScheme.dark(
+              primary: AppColors.primary,
+              secondary: AppColors.accent,
+            ),
+          ),
+          home: const DashboardMainPage(),
+        );
+      },
     );
   }
 }

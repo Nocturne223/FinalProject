@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TopSaleList extends StatelessWidget {
-  const TopSaleList({Key? key}) : super(key: key);
+  const TopSaleList({super.key});
 
   @override
   Widget build(BuildContext context) {
