@@ -8,6 +8,7 @@ class SummaryCard extends StatelessWidget {
   final IconData icon;
   final String timeFilter;
   final Widget miniGraph;
+  final ValueChanged<String?>? onTimeFilterChanged;
 
   const SummaryCard({
     Key? key,
@@ -18,6 +19,7 @@ class SummaryCard extends StatelessWidget {
     required this.icon,
     required this.timeFilter,
     required this.miniGraph,
+    this.onTimeFilterChanged,
   }) : super(key: key);
 
   @override
@@ -67,7 +69,7 @@ class SummaryCard extends StatelessWidget {
                   items: ['Weekly', 'Monthly', 'Yearly']
                       .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                       .toList(),
-                  onChanged: (_) {}, // For now, static
+                  onChanged: onTimeFilterChanged,
                   underline: Container(),
                   style: const TextStyle(fontSize: 12, color: Colors.black),
                 ),
@@ -82,7 +84,8 @@ class SummaryCard extends StatelessWidget {
 
 class MiniGraphPainter extends CustomPainter {
   final Color color;
-  MiniGraphPainter({required this.color});
+  final List<double> points;
+  MiniGraphPainter({required this.color, required this.points});
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
@@ -90,13 +93,22 @@ class MiniGraphPainter extends CustomPainter {
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
     final path = Path();
-    path.moveTo(0, size.height * 0.7);
-    path.lineTo(size.width * 0.2, size.height * 0.5);
-    path.lineTo(size.width * 0.4, size.height * 0.8);
-    path.lineTo(size.width * 0.6, size.height * 0.3);
-    path.lineTo(size.width * 0.8, size.height * 0.6);
-    path.lineTo(size.width, size.height * 0.2);
-    canvas.drawPath(path, paint);
+    if (points.isNotEmpty) {
+      double maxVal = points.reduce((a, b) => a > b ? a : b);
+      double minVal = points.reduce((a, b) => a < b ? a : b);
+      double range = (maxVal - minVal).abs();
+      if (range == 0) range = 1;
+      for (int i = 0; i < points.length; i++) {
+        double x = size.width * i / (points.length - 1);
+        double y = size.height - ((points[i] - minVal) / range) * size.height;
+        if (i == 0) {
+          path.moveTo(x, y);
+        } else {
+          path.lineTo(x, y);
+        }
+      }
+      canvas.drawPath(path, paint);
+    }
   }
 
   @override

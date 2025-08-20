@@ -1,0 +1,15 @@
+User_ID,Email,Display_Name,Role,Created_At,Is_Active
+USR-001,emily.albert@example.com,Emily Albert,admin,2024-01-01,true
+USR-002,john.smith@example.com,John Smith,manager,2024-01-02,true
+USR-003,sophia.lee@example.com,Sophia Lee,staff,2024-01-03,true
+USR-004,michael.brown@example.com,Michael Brown,staff,2024-01-04,true
+USR-005,liam.garcia@example.com,Liam Garcia,manager,2024-01-05,true
+USR-006,olivia.davis@example.com,Olivia Davis,staff,2024-01-06,true
+USR-007,noah.wilson@example.com,Noah Wilson,staff,2024-01-07,false
+USR-008,ava.martinez@example.com,Ava Martinez,admin,2024-01-08,true
+USR-009,william.anderson@example.com,William Anderson,staff,2024-01-09,true
+USR-010,mia.thomas@example.com,Mia Thomas,manager,2024-01-10,true
+USR-011,nutcracker2233@gmai.com,Albert James,manager,2025-01-10,true
+USR-012,admin@inventory.com,Admin User,admin,2024-01-01,true
+USR-013,staff1@inventory.com,Staff One,staff,2024-01-02,true
+USR-014,staff2@inventory.com,Staff Two,staff,2024-01-03,true
