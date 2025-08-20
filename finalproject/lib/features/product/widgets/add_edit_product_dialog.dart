@@ -6,10 +6,7 @@ import '../../../core/models/product.model.dart';
 class AddEditProductDialog extends StatefulWidget {
   final ProductModel? product;
 
-  const AddEditProductDialog({
-    super.key,
-    this.product,
-  });
+  const AddEditProductDialog({super.key, this.product});
 
   @override
   State<AddEditProductDialog> createState() => _AddEditProductDialogState();
@@ -18,7 +15,7 @@ class AddEditProductDialog extends StatefulWidget {
 class _AddEditProductDialogState extends State<AddEditProductDialog> {
   final _formKey = GlobalKey<FormState>();
   final _uuid = const Uuid();
-  
+
   late TextEditingController _productNameController;
   late TextEditingController _categoryController;
   late TextEditingController _supplierNameController;
@@ -47,24 +44,48 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
 
   void _initializeControllers() {
     final product = widget.product;
-    
-    _productNameController = TextEditingController(text: product?.productName ?? '');
+
+    _productNameController = TextEditingController(
+      text: product?.productName ?? '',
+    );
     _categoryController = TextEditingController(text: product?.category ?? '');
-    _supplierNameController = TextEditingController(text: product?.supplierName ?? '');
-    _warehouseLocationController = TextEditingController(text: product?.warehouseLocation ?? '');
-    _supplierIdController = TextEditingController(text: product?.supplierId ?? '');
-    _stockQuantityController = TextEditingController(text: product?.stockQuantity.toString() ?? '');
-    _reorderLevelController = TextEditingController(text: product?.reorderLevel.toString() ?? '');
-    _reorderQuantityController = TextEditingController(text: product?.reorderQuantity.toString() ?? '');
-    _unitPriceController = TextEditingController(text: product?.unitPrice.toString() ?? '');
-    _salesVolumeController = TextEditingController(text: product?.salesVolume.toString() ?? '');
-    _inventoryTurnoverRateController = TextEditingController(text: product?.inventoryTurnoverRate.toString() ?? '');
-    _percentageController = TextEditingController(text: product?.percentage ?? '');
+    _supplierNameController = TextEditingController(
+      text: product?.supplierName ?? '',
+    );
+    _warehouseLocationController = TextEditingController(
+      text: product?.warehouseLocation ?? '',
+    );
+    _supplierIdController = TextEditingController(
+      text: product?.supplierId ?? '',
+    );
+    _stockQuantityController = TextEditingController(
+      text: product?.stockQuantity.toString() ?? '',
+    );
+    _reorderLevelController = TextEditingController(
+      text: product?.reorderLevel.toString() ?? '',
+    );
+    _reorderQuantityController = TextEditingController(
+      text: product?.reorderQuantity.toString() ?? '',
+    );
+    _unitPriceController = TextEditingController(
+      text: product?.unitPrice.toString() ?? '',
+    );
+    _salesVolumeController = TextEditingController(
+      text: product?.salesVolume.toString() ?? '',
+    );
+    _inventoryTurnoverRateController = TextEditingController(
+      text: product?.inventoryTurnoverRate.toString() ?? '',
+    );
+    _percentageController = TextEditingController(
+      text: product?.percentage ?? '',
+    );
 
     _status = product?.status ?? 'Active';
     _dateReceived = product?.dateReceived ?? DateTime.now();
     _lastOrderDate = product?.lastOrderDate ?? DateTime.now();
-    _expirationDate = product?.expirationDate ?? DateTime.now().add(const Duration(days: 365));
+    _expirationDate =
+        product?.expirationDate ??
+        DateTime.now().add(const Duration(days: 365));
   }
 
   @override
@@ -87,7 +108,7 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
   @override
   Widget build(BuildContext context) {
     final isEditing = widget.product != null;
-    
+
     return Dialog(
       child: Container(
         width: MediaQuery.of(context).size.width * 0.9,
@@ -205,7 +226,13 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
                             child: _buildDropdownField(
                               label: 'Status',
                               value: _status,
-                              items: ['Active', 'Inactive', 'Discontinued'],
+                              items: [
+                                'Active',
+                                'Inactive',
+                                'Discontinued',
+                                'Backordered',
+                                'Out of Stock',
+                              ],
                               onChanged: (value) {
                                 setState(() {
                                   _status = value ?? 'Active';
@@ -224,7 +251,7 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
                       ),
 
                       const SizedBox(height: 24),
-                      
+
                       // Inventory Section
                       _buildSectionHeader('Inventory Details'),
                       const SizedBox(height: 16),
@@ -289,7 +316,9 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
                             child: _buildTextField(
                               controller: _unitPriceController,
                               label: 'Unit Price (\$)',
-                              keyboardType: TextInputType.numberWithOptions(decimal: true),
+                              keyboardType: TextInputType.numberWithOptions(
+                                decimal: true,
+                              ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Unit price is required';
@@ -305,7 +334,7 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
                       ),
 
                       const SizedBox(height: 24),
-                      
+
                       // Performance Section
                       _buildSectionHeader('Performance Metrics'),
                       const SizedBox(height: 16),
@@ -330,7 +359,7 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
                       ),
 
                       const SizedBox(height: 24),
-                      
+
                       // Dates Section
                       _buildSectionHeader('Important Dates'),
                       const SizedBox(height: 16),
@@ -367,7 +396,9 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
                         value: _expirationDate,
                         onChanged: (date) {
                           setState(() {
-                            _expirationDate = date ?? DateTime.now().add(const Duration(days: 365));
+                            _expirationDate =
+                                date ??
+                                DateTime.now().add(const Duration(days: 365));
                           });
                         },
                       ),
@@ -389,7 +420,9 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: _isLoading ? null : () => Navigator.of(context).pop(),
+                    onPressed: _isLoading
+                        ? null
+                        : () => Navigator.of(context).pop(),
                     child: const Text('Cancel'),
                   ),
                   const SizedBox(width: 16),
@@ -405,7 +438,9 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
                             height: 20,
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
-                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.white,
+                              ),
                             ),
                           )
                         : Text(isEditing ? 'Update' : 'Create'),
@@ -442,10 +477,11 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
       validator: validator,
       decoration: InputDecoration(
         labelText: label,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: 12,
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       ),
     );
   }
@@ -461,25 +497,20 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
       children: [
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.black87,
-          ),
+          style: const TextStyle(fontSize: 14, color: Colors.black87),
         ),
         const SizedBox(height: 4),
         DropdownButtonFormField<String>(
           value: value,
           decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 12,
             ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           ),
           items: items.map((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
+            return DropdownMenuItem<String>(value: value, child: Text(value));
           }).toList(),
           onChanged: onChanged,
         ),
@@ -497,10 +528,7 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
       children: [
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.black87,
-          ),
+          style: const TextStyle(fontSize: 14, color: Colors.black87),
         ),
         const SizedBox(height: 4),
         InkWell(
@@ -564,7 +592,8 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
         'Reorder_Quantity': int.parse(_reorderQuantityController.text),
         'Unit_Price': double.parse(_unitPriceController.text),
         'Sales_Volume': int.tryParse(_salesVolumeController.text) ?? 0,
-        'Inventory_Turnover_Rate': int.tryParse(_inventoryTurnoverRateController.text) ?? 0,
+        'Inventory_Turnover_Rate':
+            int.tryParse(_inventoryTurnoverRateController.text) ?? 0,
         'percentage': _percentageController.text.trim(),
       };
 
