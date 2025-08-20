@@ -1,0 +1,43 @@
+Transaction_ID,Product_ID,Quantity,Type,Timestamp,User_ID,Notes
+T-001,29-017-6255,10,sale,2025-08-01,U-002,Online order
+T-002,79-569-8856,20,restock,2025-08-02,U-001,Restocked by admin
+T-003,28-146-2641,5,sale,2025-08-03,U-003,POS sale
+T-004,11-581-9869,15,restock,2025-08-04,U-002,Restocked by staff
+T-005,13-202-4809,8,sale,2025-08-05,U-003,Online order
+T-006,70-145-2550,12,sale,2025-08-06,USR-006,Online order
+T-007,10-626-8536,7,restock,2025-08-07,USR-007,Restocked by staff
+T-008,42-879-9478,18,sale,2025-08-08,USR-008,POS sale
+T-009,82-380-5378,22,restock,2025-08-09,USR-009,Restocked by admin
+T-010,23-265-8144,9,sale,2025-08-10,USR-010,Online order
+T-011,36-127-4273,15,restock,2025-08-11,USR-011,Restocked by manager
+T-012,29-017-6255,20,restock,2025-08-12,USR-012,Restocked by admin
+T-013,79-569-8856,5,sale,2025-08-13,USR-013,POS sale
+T-014,28-146-2641,10,restock,2025-08-14,USR-014,Restocked by staff
+T-015,11-581-9869,25,sale,2024-11-25,USR-001,Black Friday sale
+T-016,13-202-4809,5,restock,2024-12-24,USR-002,Christmas Eve restock
+T-017,29-017-6255,8,sale,2024-12-25,USR-003,Christmas Day sale
+T-018,79-569-8856,12,sale,2024-12-31,USR-004,New Year's Eve sale
+T-019,28-146-2641,20,restock,2025-01-01,USR-005,New Year's Day restock
+T-020,11-581-9869,3,sale,2025-02-14,USR-006,Valentine's Day sale
+T-021,13-202-4809,7,sale,2025-04-20,USR-007,Easter sale
+T-022,29-017-6255,15,restock,2025-05-25,USR-008,Memorial Day restock
+T-023,79-569-8856,10,sale,2025-07-04,USR-009,Independence Day sale
+T-024,28-146-2641,18,restock,2025-08-01,USR-010,Weekend restock
+T-025,11-581-9869,2,sale,2025-08-02,USR-011,Low inventory sale
+T-026,13-202-4809,30,restock,2025-08-03,USR-012,High volume restock
+T-027,29-017-6255,6,sale,2025-08-09,USR-013,Weekend sale
+T-028,79-569-8856,9,sale,2025-08-10,USR-014,Weekend sale
+T-029,28-146-2641,4,sale,2025-08-16,USR-001,Low inventory sale
+T-030,11-581-9869,22,restock,2025-08-17,USR-002,Weekend restock
+T-031,13-202-4809,11,sale,2025-08-18,USR-003,Weekday sale
+T-032,29-017-6255,14,restock,2025-08-19,USR-004,Weekday restock
+T-033,79-569-8856,7,sale,2025-08-20,USR-005,Weekday sale
+T-034,28-146-2641,16,restock,2025-08-20,USR-006,Weekday restock
+T-035,11-581-9869,5,sale,2025-08-20,USR-007,Low inventory sale
+T-036,13-202-4809,21,restock,2025-08-20,USR-008,Weekday restock
+T-037,29-017-6255,13,sale,2025-08-20,USR-009,Weekday sale
+T-038,79-569-8856,8,sale,2025-08-20,USR-010,Weekday sale
+T-039,28-146-2641,17,restock,2025-08-20,USR-011,Weekday restock
+T-040,11-581-9869,6,sale,2025-08-20,USR-012,Low inventory sale
+T-041,13-202-4809,23,restock,2025-08-20,USR-013,Weekday restock
+T-042,29-017-6255,12,sale,2025-08-20,USR-014,Weekday sale
