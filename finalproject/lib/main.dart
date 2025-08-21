@@ -1,15 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'core/theme/app_colors.dart';
 import 'features/dashboard/pages/dashboard_main_page.dart';
+import 'core/infrastructure/metrics/metrics_service.dart';
+import 'features/evaluation/evaluation_page.dart';
+import 'core/infrastructure/firebase_emulator.dart';
 import 'features/auth/auth_wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await configureFirebaseEmulators();
+  // Initialize Firebase Messaging
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+  // Request notification permissions (for web and mobile)
+  await messaging.requestPermission();
+  // Optionally get the device token for testing
+  String? token = await messaging.getToken();
+  print('FCM Token: $token');
+
+  // Handle foreground messages
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print('Received a foreground message: ${message.notification?.title}');
+    // TODO: Show in-app notification/banner here
+  });
+
+  // Handle background/terminated messages (optional)
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // Capture frame timings for UI performance metrics.
+  SchedulerBinding.instance.addTimingsCallback((timings) {
+    for (final t in timings) {
+      final int buildMs = t.totalSpan.inMilliseconds;
+      final int rasterMs = t.rasterDuration.inMilliseconds;
+      MetricsService.instance.recordSuccess('ui.frameBuild', buildMs);
+      MetricsService.instance.recordSuccess('ui.frameRaster', rasterMs);
+    }
+  });
   runApp(const MyApp());
+}
+
+// Top-level function for background message handling
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('Handling a background message: ${message.messageId}');
 }
 
 class MyApp extends StatelessWidget {
@@ -44,6 +81,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const AuthWrapper(child: DashboardMainPage()),
+      routes: <String, WidgetBuilder>{
+        '/evaluation': (_) => const EvaluationPage(),
+      },
     );
   }
 }

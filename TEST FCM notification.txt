@@ -1,0 +1,90 @@
+TEST FCM notification:
+
+Notification title:
+Low Inventory Alert
+
+Notification text:
+Some products are below their reorder level. Please review inventory.
+
+Notification image (optional):
+Leave blank or use:
+https://yourapp.com/image.png
+(You can skip this for basic testing.)
+
+Notification name (optional):
+InventoryAlert
+
+========== ========== ========== ========== ========== ========== ========== 
+
+Notification title:
+Out-of-Stock Alert
+
+Notification text:
+One or more products are out of stock. Immediate restocking is required.
+
+Notification image (optional):
+Leave blank or use:
+https://yourapp.com/image.png
+
+Notification name (optional):
+OutOfStockAlert
+
+========== ========== ========== ========== ========== ========== ========== 
+
+Notification title:
+Expiry Date Alert
+
+Notification text:
+Some products are nearing their expiration date. Please check and remove expired items.
+
+Notification image (optional):
+Leave blank or use:
+https://yourapp.com/image.png
+
+Notification name (optional):
+ExpiryAlert
+
+========== ========== ========== ========== ========== ========== ========== 
+
+Notification title:
+High Sales Alert
+
+Notification text:
+Top selling products have reached high sales volume this period. Consider restocking or promotions.
+
+Notification image (optional):
+Leave blank or use:
+https://yourapp.com/image.png
+
+Notification name (optional):
+HighSalesAlert
+
+========== ========== ========== ========== ========== ========== ========== 
+
+Notification title:
+New Product Added
+
+Notification text:
+A new product has been added to the inventory. Please review details.
+
+Notification image (optional):
+Leave blank or use:
+https://yourapp.com/image.png
+
+Notification name (optional):
+NewProductAlert
+
+========== ========== ========== ========== ========== ========== ========== 
+
+Notification title:
+Price Change Alert
+
+Notification text:
+Product prices have changed. Please review updated pricing.
+
+Notification image (optional):
+Leave blank or use:
+https://yourapp.com/image.png
+
+Notification name (optional):
+PriceChangeAlert

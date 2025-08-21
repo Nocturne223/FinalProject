@@ -6,6 +6,7 @@ import '../models/category.dart';
 Future<void> seedCategoriesFromCsv() async {
   final csvString = await rootBundle.loadString('assets/categories.csv');
   final rows = const CsvToListConverter(eol: '\n').convert(csvString);
+  // ignore: unused_local_variable
   final header = rows.first.cast<String>();
   final categories = rows.skip(1);
   for (var row in categories) {

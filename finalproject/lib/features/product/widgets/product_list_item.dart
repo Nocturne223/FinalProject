@@ -17,9 +17,13 @@ class ProductListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLowStock = product.stockQuantity <= product.reorderLevel;
-    final isExpiringSoon = product.expirationDate.isBefore(
-      DateTime.now().add(const Duration(days: 30)),
+    final now = DateTime.now();
+    final isExpired = product.expirationDate.isBefore(
+      DateTime(now.year, now.month, now.day),
     );
+    final isExpiringSoon =
+        !isExpired &&
+        product.expirationDate.isBefore(now.add(const Duration(days: 30)));
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -126,34 +130,80 @@ class ProductListItem extends StatelessWidget {
                 ),
               ],
             ),
-            if (isLowStock || isExpiringSoon) ...[
+            if (isLowStock) ...[
               const SizedBox(height: 12),
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: isLowStock ? Colors.red[50] : Colors.orange[50],
+                  color: Colors.red[50],
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: isLowStock ? Colors.red[200]! : Colors.orange[200]!,
-                  ),
+                  border: Border.all(color: Colors.red[200]!),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.warning, color: Colors.red[700], size: 20),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'Low stock! Reorder level: ${product.reorderLevel}',
+                        style: TextStyle(
+                          color: Colors.red[700],
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            if (isExpired) ...[
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.grey[400]!),
                 ),
                 child: Row(
                   children: [
                     Icon(
-                      isLowStock ? Icons.warning : Icons.schedule,
-                      color: isLowStock ? Colors.red[700] : Colors.orange[700],
+                      Icons.error_outline,
+                      color: Colors.grey[800],
                       size: 20,
                     ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        isLowStock
-                            ? 'Low stock! Reorder level: ${product.reorderLevel}'
-                            : 'Expires soon: ${_formatDate(product.expirationDate)}',
+                        'Expired: ${_formatDate(product.expirationDate)}',
                         style: TextStyle(
-                          color: isLowStock
-                              ? Colors.red[700]
-                              : Colors.orange[700],
+                          color: Colors.grey[800],
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            if (isExpiringSoon) ...[
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.orange[50],
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.orange[200]!),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.schedule, color: Colors.orange[700], size: 20),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'Expires soon: ${_formatDate(product.expirationDate)}',
+                        style: TextStyle(
+                          color: Colors.orange[700],
                           fontWeight: FontWeight.w500,
                         ),
                       ),

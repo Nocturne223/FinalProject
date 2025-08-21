@@ -631,102 +631,124 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
                         .toList();
                   }
 
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SummaryCard(
-                        title: 'Total Products',
-                        value: '$totalProducts',
-                        percent: percentChange,
-                        color: Colors.green,
-                        icon: Icons.shopping_bag,
-                        timeFilter: productTimeFilter,
-                        onTimeFilterChanged: (val) {
-                          setState(() {
-                            _productTrendType = val ?? 'Monthly';
-                          });
-                        },
-                        miniGraph: SizedBox(
-                          height: 32,
-                          width: 60,
-                          child: CustomPaint(
-                            painter: MiniGraphPainter(
+                  return LayoutBuilder(
+                    builder: (context, constraints) {
+                      final bool isNarrow = constraints.maxWidth < 900;
+                      final double itemWidth = isNarrow
+                          ? (constraints.maxWidth - 24) / 2
+                          : (constraints.maxWidth - 48) / 4;
+                      return Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
+                        alignment: WrapAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: itemWidth,
+                            child: SummaryCard(
+                              title: 'Total Products',
+                              value: '$totalProducts',
+                              percent: percentChange,
                               color: Colors.green,
-                              points: productTrendPoints,
+                              icon: Icons.shopping_bag,
+                              timeFilter: productTimeFilter,
+                              onTimeFilterChanged: (val) {
+                                setState(() {
+                                  _productTrendType = val ?? 'Monthly';
+                                });
+                              },
+                              miniGraph: SizedBox(
+                                height: 32,
+                                width: 60,
+                                child: CustomPaint(
+                                  painter: MiniGraphPainter(
+                                    color: Colors.green,
+                                    points: productTrendPoints,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      SummaryCard(
-                        title: 'Total Stock',
-                        value: '$totalStock',
-                        percent: percentChange,
-                        color: Colors.orange,
-                        icon: Icons.inventory,
-                        timeFilter: stockTimeFilter,
-                        onTimeFilterChanged: (val) {
-                          setState(() {
-                            _stockTrendType = val ?? 'Monthly';
-                          });
-                        },
-                        miniGraph: SizedBox(
-                          height: 32,
-                          width: 60,
-                          child: CustomPaint(
-                            painter: MiniGraphPainter(
+                          SizedBox(
+                            width: itemWidth,
+                            child: SummaryCard(
+                              title: 'Total Stock',
+                              value: '$totalStock',
+                              percent: percentChange,
                               color: Colors.orange,
-                              points: stockTrendPoints,
+                              icon: Icons.inventory,
+                              timeFilter: stockTimeFilter,
+                              onTimeFilterChanged: (val) {
+                                setState(() {
+                                  _stockTrendType = val ?? 'Monthly';
+                                });
+                              },
+                              miniGraph: SizedBox(
+                                height: 32,
+                                width: 60,
+                                child: CustomPaint(
+                                  painter: MiniGraphPainter(
+                                    color: Colors.orange,
+                                    points: stockTrendPoints,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      SummaryCard(
-                        title: 'Categories',
-                        value: '${categories.length}',
-                        percent: percentChange,
-                        color: Colors.purple,
-                        icon: Icons.category,
-                        timeFilter: categoryTimeFilter,
-                        onTimeFilterChanged: (val) {
-                          setState(() {
-                            _categoryTrendType = val ?? 'Monthly';
-                          });
-                        },
-                        miniGraph: SizedBox(
-                          height: 32,
-                          width: 60,
-                          child: CustomPaint(
-                            painter: MiniGraphPainter(
+                          SizedBox(
+                            width: itemWidth,
+                            child: SummaryCard(
+                              title: 'Categories',
+                              value: '${categories.length}',
+                              percent: percentChange,
                               color: Colors.purple,
-                              points: categoryTrendPoints,
+                              icon: Icons.category,
+                              timeFilter: categoryTimeFilter,
+                              onTimeFilterChanged: (val) {
+                                setState(() {
+                                  _categoryTrendType = val ?? 'Monthly';
+                                });
+                              },
+                              miniGraph: SizedBox(
+                                height: 32,
+                                width: 60,
+                                child: CustomPaint(
+                                  painter: MiniGraphPainter(
+                                    color: Colors.purple,
+                                    points: categoryTrendPoints,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      SummaryCard(
-                        title: 'Suppliers',
-                        value: '${suppliers.length}',
-                        percent: percentChange,
-                        color: Colors.blue,
-                        icon: Icons.people,
-                        timeFilter: supplierTimeFilter,
-                        onTimeFilterChanged: (val) {
-                          setState(() {
-                            _supplierTrendType = val ?? 'Monthly';
-                          });
-                        },
-                        miniGraph: SizedBox(
-                          height: 32,
-                          width: 60,
-                          child: CustomPaint(
-                            painter: MiniGraphPainter(
+                          SizedBox(
+                            width: itemWidth,
+                            child: SummaryCard(
+                              title: 'Suppliers',
+                              value: '${suppliers.length}',
+                              percent: percentChange,
                               color: Colors.blue,
-                              points: supplierTrendPoints,
+                              icon: Icons.people,
+                              timeFilter: supplierTimeFilter,
+                              onTimeFilterChanged: (val) {
+                                setState(() {
+                                  _supplierTrendType = val ?? 'Monthly';
+                                });
+                              },
+                              miniGraph: SizedBox(
+                                height: 32,
+                                width: 60,
+                                child: CustomPaint(
+                                  painter: MiniGraphPainter(
+                                    color: Colors.blue,
+                                    points: supplierTrendPoints,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ],
+                        ],
+                      );
+                    },
                   );
                 },
               ),
