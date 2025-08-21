@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class ProductSearchBar extends StatelessWidget {
   final Function(String) onSearchChanged;
 
-  const ProductSearchBar({
-    super.key,
-    required this.onSearchChanged,
-  });
+  const ProductSearchBar({super.key, required this.onSearchChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +29,17 @@ class ProductSearchBar extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+            width: 2,
+          ),
         ),
         filled: true,
         fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
       ),
       style: const TextStyle(fontSize: 16),
     );

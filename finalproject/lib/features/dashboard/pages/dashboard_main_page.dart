@@ -1,14 +1,14 @@
+import 'package:finalproject/core/theme/app_colors.dart';
+import 'package:finalproject/core/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
 import '../../../core/infrastructure/seed_products.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../widgets/summary_card.dart';
-import '../widgets/revenue_chart.dart';
-import '../widgets/pie_chart.dart';
-import '../widgets/top_sale_list.dart';
 import '../../product/product_page.dart';
 import '../../alerts/alerts_page.dart';
 import '../../reports/reports_page.dart';
 import '../../auth/services/auth_service.dart';
+import '../../settings/settings_page.dart';
 
 class DashboardMainPage extends StatefulWidget {
   const DashboardMainPage({super.key});
@@ -38,33 +38,33 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ecomus'),
+        title: const Text('Intellistock'),
         actions: [IconButton(icon: const Icon(Icons.search), onPressed: () {})],
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.lightSurface,
       ),
       drawer: Drawer(
         child: Column(
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-              ),
+              decoration: BoxDecoration(color: AppColors.primary),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 30,
-                    backgroundColor: Colors.white,
+                    backgroundColor: AppColors.lightSurface,
                     child: Icon(
                       Icons.inventory_2,
                       size: 35,
-                      color: Colors.blue,
+                      color: AppColors.info,
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Ecomus',
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(
+                    'Intellistock',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: AppColors.lightSurface,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
@@ -72,7 +72,7 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
                   Text(
                     'Smart Inventory Management',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
+                      color: AppColors.lightSurface.withOpacity(0.8),
                       fontSize: 14,
                     ),
                   ),
@@ -136,7 +136,12 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
                     title: const Text('Settings'),
                     onTap: () {
                       Navigator.pop(context);
-                      // TODO: Implement settings page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SettingsPage(),
+                        ),
+                      );
                     },
                   ),
                   ListTile(

@@ -1,3 +1,6 @@
+import 'package:finalproject/core/theme/app_colors.dart';
+import 'package:finalproject/core/theme/app_radius.dart';
+import 'package:finalproject/core/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../core/models/product.model.dart';
@@ -44,25 +47,26 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product Management'),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Colors.white,
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.lightSurface,
         elevation: 2,
       ),
       body: Column(
         children: [
           // Search and Filter Section
           Container(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(AppSpacing.md),
             decoration: BoxDecoration(
-              color: Colors.grey[50],
+              color: AppColors.lightCardBackground,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.1),
+                  color: AppColors.lightMainText.withOpacity(0.05),
                   spreadRadius: 1,
                   blurRadius: 3,
                   offset: const Offset(0, 1),
                 ),
               ],
+              borderRadius: BorderRadius.circular(AppRadius.md),
             ),
             child: Column(
               children: [
@@ -73,7 +77,7 @@ class _ProductPageState extends State<ProductPage> {
                     });
                   },
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: AppSpacing.md),
                 Row(
                   children: [
                     Expanded(
@@ -88,7 +92,7 @@ class _ProductPageState extends State<ProductPage> {
                         },
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    const SizedBox(width: AppSpacing.md),
                     Expanded(
                       child: _buildFilterDropdown(
                         'Status',
@@ -101,7 +105,7 @@ class _ProductPageState extends State<ProductPage> {
                         },
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    const SizedBox(width: AppSpacing.md),
                     FilterChip(
                       label: const Text('Low Stock Only'),
                       selected: _showLowStockOnly,
@@ -110,8 +114,8 @@ class _ProductPageState extends State<ProductPage> {
                           _showLowStockOnly = selected;
                         });
                       },
-                      selectedColor: Colors.red[100],
-                      checkmarkColor: Colors.red[700],
+                      selectedColor: AppColors.warning,
+                      checkmarkColor: AppColors.error,
                     ),
                   ],
                 ),

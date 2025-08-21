@@ -18,19 +18,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Inventory Manager',
+      title: 'Intellistock',
       theme: ThemeData(
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         useMaterial3: true,
         textTheme: GoogleFonts.assistantTextTheme(
-          Theme.of(
-            context,
-          ).textTheme.apply(bodyColor: AppColors.mainTextColor3),
+          Theme.of(context).textTheme.apply(bodyColor: AppColors.lightMainText),
         ),
-        scaffoldBackgroundColor: AppColors.pageBackground,
-        colorScheme: ColorScheme.dark(
+        scaffoldBackgroundColor: AppColors.lightBackground,
+        cardColor: AppColors.lightCardBackground,
+        dividerColor: AppColors.lightDivider,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColors.lightAppBarBackground,
+          foregroundColor: AppColors.lightMainText,
+        ),
+        drawerTheme: const DrawerThemeData(
+          backgroundColor: AppColors.lightDrawerBackground,
+        ),
+        colorScheme: ColorScheme.light(
           primary: AppColors.primary,
           secondary: AppColors.accent,
+          error: AppColors.error,
+          background: AppColors.lightBackground,
+          surface: AppColors.lightSurface,
         ),
       ),
       home: const AuthWrapper(child: DashboardMainPage()),
