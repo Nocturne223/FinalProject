@@ -1,0 +1,100 @@
+Product_Name,Catagory,Supplier_Name,Warehouse_Location,Status,Product_ID,Supplier_ID,Date_Received,Last_Order_Date,Expiration_Date,Stock_Quantity,Reorder_Level,Reorder_Quantity,Unit_Price,Sales_Volume,Inventory_Turnover_Rate,percentage
+Apple,Fruits & Vegetables,FreshFarm,101 Orchard Lane,Active,10-111-1111,20-222-2222,9/10/2025,9/15/2025,10/10/2025,120,30,50,$2.00,150,80,2.50%
+Whole Milk,Dairy,DairyPure,202 Creamery Rd,Backordered,11-222-3333,21-333-4444,10/1/2025,10/10/2025,11/1/2025,80,20,40,$3.50,90,60,2.00%
+Brown Rice,Grains & Pulses,GrainCo,303 Rice Blvd,Active,12-333-4444,22-444-5555,11/5/2025,11/10/2025,12/15/2025,200,50,100,$1.80,210,95,2.10%
+Salmon,Seafood,SeaHarvest,404 Ocean Ave,Discontinued,13-444-5555,23-555-6666,12/1/2025,12/10/2025,1/5/2026,60,15,30,$8.00,70,40,2.30%
+Butter,Dairy,GoldenDairy,505 Butter St,Active,14-555-6666,24-666-7777,1/10/2026,1/15/2026,2/20/2026,90,25,45,$4.00,100,70,2.40%
+Spinach,Fruits & Vegetables,GreenLeaf,606 Veggie Rd,Backordered,15-666-7777,25-777-8888,2/5/2026,2/10/2026,3/15/2026,110,35,55,$2.20,120,85,2.60%
+Olive Oil,Oils & Fats,Olivia,707 Olive Dr,Active,16-777-8888,26-888-9999,3/1/2026,3/10/2026,4/20/2026,75,20,35,$6.50,80,50,2.20%
+Baguette,Bakery,BreadWorks,808 Baker St,Discontinued,17-888-9999,27-999-0000,4/5/2026,4/10/2026,5/15/2026,55,10,25,$3.00,60,30,2.10%
+Eggs,Dairy,HenHouse,909 Egg Rd,Active,18-999-0000,28-000-1111,5/1/2026,5/10/2026,6/20/2026,130,40,60,$2.50,140,90,2.70%
+Orange Juice,Beverages,Juicy,1001 Citrus Ave,Backordered,19-000-1111,29-111-2222,6/10/2026,6/15/2026,7/25/2026,95,25,45,$3.80,100,60,2.30%
+Chicken Breast,Meat,PoultryPro,1102 Farm Rd,Active,20-111-2222,30-222-3333,7/5/2026,7/10/2026,8/20/2026,85,20,40,$7.00,90,55,2.40%
+Greek Yogurt,Dairy,Yoguru,1203 Dairy Lane,Active,21-222-3333,31-333-4444,8/1/2026,8/10/2026,9/15/2026,100,30,50,$1.90,110,75,2.50%
+Tuna,Seafood,BlueSea,1304 Harbor St,Backordered,22-333-4444,32-444-5555,9/10/2026,9/15/2026,10/20/2026,70,15,35,$5.50,75,45,2.20%
+Banana,Fruits & Vegetables,TropiFresh,1405 Banana Blvd,Active,23-444-5555,33-555-6666,10/1/2026,10/10/2026,11/15/2026,150,40,70,$1.20,160,100,2.80%
+Coffee,Beverages,CafeCo,1506 Java Ave,Discontinued,24-555-6666,34-666-7777,11/5/2026,11/10/2026,12/20/2026,60,10,30,$9.00,65,35,2.10%
+Broccoli,Fruits & Vegetables,GreenLeaf,1607 Veggie Rd,Active,25-666-7777,35-777-8888,9/20/2025,9/25/2025,10/20/2025,100,25,50,$2.30,110,70,2.40%
+Almonds,Grains & Pulses,NutriCo,1708 Nut St,Backordered,26-777-8888,36-888-9999,10/5/2025,10/10/2025,11/15/2025,90,20,40,$5.00,95,60,2.20%
+Shrimp,Seafood,SeaHarvest,1809 Ocean Ave,Active,27-888-9999,37-999-0000,11/1/2025,11/10/2025,12/10/2025,80,15,35,$10.00,85,50,2.30%
+Mozzarella Cheese,Dairy,GoldenDairy,1901 Cheese St,Discontinued,28-999-0000,38-000-1111,12/5/2025,12/10/2025,1/15/2026,70,20,30,$4.50,75,40,2.10%
+Tomato,Fruits & Vegetables,FreshFarm,2002 Orchard Lane,Active,29-000-1111,39-111-2222,1/10/2026,1/15/2026,2/10/2026,120,30,50,$1.80,130,80,2.50%
+Sunflower Oil,Oils & Fats,Olivia,2103 Oil Dr,Backordered,30-111-2222,40-222-3333,2/5/2026,2/10/2026,3/20/2026,85,20,40,$6.00,90,55,2.30%
+Bagel,Bakery,BreadWorks,2204 Baker St,Active,31-222-3333,41-333-4444,3/1/2026,3/10/2026,4/15/2026,60,10,25,$2.80,65,30,2.10%
+Duck Eggs,Dairy,HenHouse,2305 Egg Rd,Backordered,32-333-4444,42-444-5555,4/5/2026,4/10/2026,5/20/2026,110,35,55,$3.00,115,85,2.60%
+Apple Juice,Beverages,Juicy,2406 Citrus Ave,Active,33-444-5555,43-555-6666,5/1/2026,5/10/2026,6/25/2026,95,25,45,$3.50,100,60,2.30%
+Pork Chop,Meat,PoultryPro,2507 Farm Rd,Discontinued,34-555-6666,44-666-7777,6/10/2026,6/15/2026,7/30/2026,75,20,40,$8.00,80,55,2.40%
+Cottage Cheese,Dairy,Yoguru,2608 Dairy Lane,Active,35-666-7777,45-777-8888,7/5/2026,7/10/2026,8/25/2026,90,30,50,$2.20,95,75,2.50%
+Mackerel,Seafood,BlueSea,2709 Harbor St,Backordered,36-777-8888,46-888-9999,8/1/2026,8/10/2026,9/20/2026,60,15,35,$6.00,65,45,2.20%
+Pineapple,Fruits & Vegetables,TropiFresh,2810 Banana Blvd,Active,37-888-9999,47-999-0000,9/10/2026,9/15/2026,10/25/2026,140,40,70,$2.50,145,100,2.80%
+Green Tea,Beverages,CafeCo,2911 Java Ave,Discontinued,38-999-0000,48-000-1111,10/1/2026,10/10/2026,11/20/2026,55,10,30,$7.00,60,35,2.10%
+Cucumber,Fruits & Vegetables,FreshFarm,3012 Orchard Lane,Active,39-000-1111,49-111-2222,11/5/2026,11/10/2026,12/15/2026,110,30,50,$1.60,115,80,2.50%
+Cashews,Grains & Pulses,NutriCo,3113 Nut St,Backordered,40-111-2222,50-222-3333,12/1/2026,12/10/2026,1/20/2027,80,20,40,$6.50,85,60,2.20%
+Crab,Seafood,SeaHarvest,3214 Ocean Ave,Active,41-222-3333,51-333-4444,1/10/2026,1/15/2026,2/20/2026,70,15,35,$12.00,75,50,2.30%
+Swiss Cheese,Dairy,GoldenDairy,3315 Cheese St,Discontinued,42-333-4444,52-444-5555,2/5/2026,2/10/2026,3/15/2026,60,20,30,$5.00,65,40,2.10%
+Lettuce,Fruits & Vegetables,GreenLeaf,3416 Veggie Rd,Active,43-444-5555,53-555-6666,3/1/2026,3/10/2026,4/20/2026,120,25,50,$1.70,125,70,2.40%
+Quinoa,Grains & Pulses,SuperGrain,4001 Health Ave,Active,44-555-6666,54-666-7777,9/20/2025,9/25/2025,10/20/2025,110,30,60,$3.20,120,80,2.60%
+Tilapia Fillet,Seafood,OceanFresh,4002 Sea St,Backordered,45-666-7777,55-777-8888,10/5/2025,10/10/2025,11/15/2025,85,20,40,$7.50,90,60,2.30%
+Goat Cheese,Dairy,CheeseMakers,4003 Dairy Rd,Active,46-777-8888,56-888-9999,11/1/2025,11/10/2025,12/10/2025,70,15,35,$5.50,75,50,2.20%
+Pumpkin,Fruits & Vegetables,Harvesters,4004 Pumpkin Ln,Discontinued,47-888-9999,57-999-0000,12/5/2025,12/10/2025,1/15/2026,95,25,45,$2.80,100,70,2.40%
+Coconut Water,Beverages,NatureDrink,4005 Tropic Ave,Active,48-999-0000,58-000-1111,1/10/2026,1/15/2026,2/20/2026,120,30,50,$2.60,130,80,2.50%
+Turkey Breast,Meat,PoultryPro,4006 Farm Rd,Backordered,49-000-1111,59-111-2222,2/5/2026,2/10/2026,3/15/2026,80,20,40,$8.50,85,55,2.40%
+Edamame,Fruits & Vegetables,GreenLeaf,4007 Veggie Rd,Active,50-111-2222,60-222-3333,3/1/2026,3/10/2026,4/20/2026,100,25,50,$2.10,110,70,2.40%
+Walnut Oil,Oils & Fats,NutriCo,4008 Nut St,Discontinued,51-222-3333,61-333-4444,4/5/2026,4/10/2026,5/15/2026,75,20,35,$7.00,80,50,2.20%
+Ciabatta,Bakery,BreadWorks,4009 Baker St,Active,52-333-4444,62-444-5555,5/1/2026,5/10/2026,6/25/2026,60,10,25,$3.20,65,30,2.10%
+Duck Leg,Meat,PoultryPro,4010 Farm Rd,Backordered,53-444-5555,63-555-6666,6/10/2026,6/15/2026,7/30/2026,90,20,40,$9.00,95,55,2.40%
+Ricotta,Dairy,GoldenDairy,4011 Cheese St,Active,54-555-6666,64-666-7777,7/5/2026,7/10/2026,8/25/2026,100,30,50,$2.80,110,75,2.50%
+Swordfish,Seafood,BlueSea,4012 Harbor St,Discontinued,55-666-7777,65-777-8888,8/1/2026,8/10/2026,9/20/2026,60,15,35,$13.00,65,45,2.20%
+Papaya,Fruits & Vegetables,TropiFresh,4013 Banana Blvd,Active,56-777-8888,66-888-9999,9/10/2026,9/15/2026,10/25/2026,140,40,70,$2.70,145,100,2.80%
+Matcha,Beverages,CafeCo,4014 Java Ave,Backordered,57-888-9999,67-999-0000,10/1/2026,10/10/2026,11/20/2026,55,10,30,$8.00,60,35,2.10%
+Radish,Fruits & Vegetables,FreshFarm,4015 Orchard Lane,Active,58-999-0000,68-000-1111,11/5/2026,11/10/2026,12/15/2026,110,30,50,$1.50,115,80,2.50%
+Pistachios,Grains & Pulses,NutriCo,4016 Nut St,Discontinued,59-000-1111,69-111-2222,12/1/2026,12/10/2026,1/20/2027,80,20,40,$7.50,85,60,2.20%
+Lobster,Seafood,SeaHarvest,4017 Ocean Ave,Active,60-111-2222,70-222-3333,1/10/2026,1/15/2026,2/20/2026,70,15,35,$15.00,75,50,2.30%
+Brie Cheese,Dairy,GoldenDairy,4018 Cheese St,Backordered,61-222-3333,71-333-4444,2/5/2026,2/10/2026,3/15/2026,60,20,30,$6.00,65,40,2.10%
+Arugula,Fruits & Vegetables,GreenLeaf,4019 Veggie Rd,Active,62-333-4444,72-444-5555,3/1/2026,3/10/2026,4/20/2026,120,25,50,$1.90,125,70,2.40%
+Barley,Grains & Pulses,GrainCo,4020 Grain Blvd,Active,63-444-5555,73-555-6666,9/20/2025,9/25/2025,10/20/2025,110,30,60,$2.10,120,80,2.60%
+Mussels,Seafood,OceanFresh,4021 Sea St,Backordered,64-555-6666,74-666-7777,10/5/2025,10/10/2025,11/15/2025,85,20,40,$9.00,90,60,2.30%
+Havarti Cheese,Dairy,CheeseMakers,4022 Dairy Rd,Active,65-666-7777,75-777-8888,11/1/2025,11/10/2025,12/10/2025,70,15,35,$5.80,75,50,2.20%
+Persimmon,Fruits & Vegetables,Harvesters,4023 Persimmon Ln,Discontinued,66-777-8888,76-888-9999,12/5/2025,12/10/2025,1/15/2026,95,25,45,$3.00,100,70,2.40%
+Kombucha,Beverages,NatureDrink,4024 Tropic Ave,Active,67-888-9999,77-999-0000,1/10/2026,1/15/2026,2/20/2026,120,30,50,$3.20,130,80,2.50%
+Venison,Meat,PoultryPro,4025 Farm Rd,Backordered,68-999-0000,78-000-1111,2/5/2026,2/10/2026,3/15/2026,80,20,40,$14.00,85,55,2.40%
+Chard,Fruits & Vegetables,GreenLeaf,4026 Veggie Rd,Active,69-000-1111,79-111-2222,3/1/2026,3/10/2026,4/20/2026,100,25,50,$2.00,110,70,2.40%
+Macadamia Oil,Oils & Fats,NutriCo,4027 Nut St,Discontinued,70-111-2222,80-222-3333,4/5/2026,4/10/2026,5/15/2026,75,20,35,$8.00,80,50,2.20%
+Pumpernickel,Bakery,BreadWorks,4028 Baker St,Active,71-222-3333,81-333-4444,5/1/2026,5/10/2026,6/25/2026,60,10,25,$3.50,65,30,2.10%
+Quail Eggs,Dairy,HenHouse,4029 Egg Rd,Backordered,72-333-4444,82-444-5555,6/10/2026,6/15/2026,7/30/2026,110,35,55,$3.20,115,85,2.60%
+Pear Juice,Beverages,Juicy,4030 Citrus Ave,Active,73-444-5555,83-555-6666,7/5/2026,7/10/2026,8/25/2026,95,25,45,$3.80,100,60,2.30%
+Lamb Chop,Meat,PoultryPro,4031 Farm Rd,Discontinued,74-555-6666,84-666-7777,8/1/2026,8/10/2026,9/20/2026,75,20,40,$15.00,80,55,2.40%
+Salsify,Fruits & Vegetables,RootHarvest,5001 Veggie Rd,Active,75-555-6666,85-666-7777,9/20/2025,9/25/2025,10/20/2025,90,20,40,$2.40,95,60,2.30%
+Buffalo Milk,Dairy,WildDairy,5002 Dairy Rd,Backordered,76-666-7777,86-777-8888,10/5/2025,10/10/2025,11/15/2025,80,20,40,$4.20,85,60,2.20%
+Farro,Grains & Pulses,AncientGrain,5003 Grain Blvd,Active,77-777-8888,87-888-9999,11/1/2025,11/10/2025,12/10/2025,110,30,60,$2.90,120,80,2.60%
+Red Snapper,Seafood,SeaHarvest,5004 Ocean Ave,Discontinued,78-888-9999,88-999-0000,12/5/2025,12/10/2025,1/15/2026,60,15,35,$11.00,65,50,2.20%
+Ghee,Dairy,GoldenDairy,5005 Butter St,Active,79-999-0000,89-000-1111,1/10/2026,1/15/2026,2/20/2026,90,25,45,$5.00,100,70,2.40%
+Watercress,Fruits & Vegetables,GreenLeaf,5006 Veggie Rd,Backordered,80-000-1111,90-111-2222,2/5/2026,2/10/2026,3/15/2026,110,35,55,$2.10,115,85,2.60%
+Hazelnut Oil,Oils & Fats,NutriCo,5007 Nut St,Active,81-111-2222,91-222-3333,3/1/2026,3/10/2026,4/20/2026,75,20,35,$7.50,80,50,2.20%
+Pretzel,Bakery,BreadWorks,5008 Baker St,Discontinued,82-222-3333,92-333-4444,4/5/2026,4/10/2026,5/15/2026,55,10,25,$2.80,60,30,2.10%
+Turkey Eggs,Dairy,HenHouse,5009 Egg Rd,Active,83-333-4444,93-444-5555,5/1/2026,5/10/2026,6/25/2026,130,40,60,$2.70,140,90,2.70%
+Grapefruit Juice,Beverages,Juicy,5010 Citrus Ave,Backordered,84-444-5555,94-555-6666,6/10/2026,6/15/2026,7/25/2026,95,25,45,$3.90,100,60,2.30%
+Duck Breast,Meat,PoultryPro,5011 Farm Rd,Active,85-555-6666,95-666-7777,7/5/2026,7/10/2026,8/20/2026,85,20,40,$9.50,90,55,2.40%
+Sheep Milk,Dairy,GoldenDairy,5012 Dairy Lane,Active,86-666-7777,96-777-8888,8/1/2026,8/10/2026,9/15/2026,100,30,50,$3.10,110,75,2.50%
+Octopus,Seafood,BlueSea,5013 Harbor St,Backordered,87-777-8888,97-888-9999,9/10/2026,9/15/2026,10/20/2026,70,15,35,$14.00,75,45,2.20%
+Guava,Fruits & Vegetables,TropiFresh,5014 Banana Blvd,Active,88-888-9999,98-999-0000,10/1/2026,10/10/2026,11/15/2026,150,40,70,$2.60,160,100,2.80%
+Yerba Mate,Beverages,CafeCo,5015 Java Ave,Discontinued,89-999-0000,99-000-1111,11/5/2026,11/10/2026,12/20/2026,60,10,30,$8.50,65,35,2.10%
+Romanesco,Fruits & Vegetables,GreenLeaf,5016 Veggie Rd,Active,90-000-1111,00-111-2222,9/20/2025,9/25/2025,10/20/2025,100,25,50,$2.50,110,70,2.40%
+Brazil Nut,Grains & Pulses,NutriCo,5017 Nut St,Backordered,91-111-2222,01-222-3333,10/5/2025,10/10/2025,11/15/2025,90,20,40,$6.80,95,60,2.20%
+Catfish,Seafood,SeaHarvest,5018 Ocean Ave,Active,92-222-3333,02-333-4444,11/1/2025,11/10/2025,12/10/2025,80,15,35,$9.50,85,50,2.30%
+Paneer,Dairy,CheeseMakers,5019 Dairy Rd,Discontinued,93-333-4444,03-444-5555,12/5/2025,12/10/2025,1/15/2026,70,20,30,$4.80,75,40,2.10%
+Turnip,Fruits & Vegetables,Harvesters,5020 Turnip Ln,Active,94-444-5555,04-555-6666,1/10/2026,1/15/2026,2/20/2026,120,30,50,$1.60,130,80,2.50%
+Rabbit Meat,Meat,PoultryPro,5021 Farm Rd,Backordered,95-555-6666,05-666-7777,2/5/2026,2/10/2026,3/15/2026,80,20,40,$13.00,85,55,2.40%
+Collard Greens,Fruits & Vegetables,GreenLeaf,5022 Veggie Rd,Active,96-666-7777,06-777-8888,3/1/2026,3/10/2026,4/20/2026,100,25,50,$2.20,110,70,2.40%
+Spelt,Grains & Pulses,GrainCo,5023 Grain Blvd,Active,97-777-8888,07-888-9999,9/20/2025,9/25/2025,10/20/2025,110,30,60,$2.80,120,80,2.60%
+Clams,Seafood,OceanFresh,5024 Sea St,Backordered,98-888-9999,08-999-0000,10/5/2025,10/10/2025,11/15/2025,85,20,40,$8.50,90,60,2.30%
+Fontina Cheese,Dairy,CheeseMakers,5025 Dairy Rd,Active,99-999-0000,09-000-1111,11/1/2025,11/10/2025,12/10/2025,70,15,35,$6.20,75,50,2.20%
+Mulberry,Fruits & Vegetables,Harvesters,5026 Mulberry Ln,Discontinued,00-000-1111,10-111-2222,12/5/2025,12/10/2025,1/15/2026,95,25,45,$3.10,100,70,2.40%
+Tamarind,Beverages,NatureDrink,5027 Tropic Ave,Active,01-111-2222,11-222-3333,1/10/2026,1/15/2026,2/20/2026,120,30,50,$2.90,130,80,2.50%
+Bison Meat,Meat,PoultryPro,5028 Farm Rd,Backordered,02-222-3333,12-333-4444,2/5/2026,2/10/2026,3/15/2026,80,20,40,$15.00,85,55,2.40%
+Mustard Greens,Fruits & Vegetables,GreenLeaf,5029 Veggie Rd,Active,03-333-4444,13-444-5555,3/1/2026,3/10/2026,4/20/2026,100,25,50,$2.30,110,70,2.40%
+Pistachio Oil,Oils & Fats,NutriCo,5030 Nut St,Discontinued,04-444-5555,14-555-6666,4/5/2026,4/10/2026,5/15/2026,75,20,35,$9.00,80,50,2.20%
+Sourdough Roll,Bakery,BreadWorks,5031 Baker St,Active,05-555-6666,15-666-7777,5/1/2026,5/10/2026,6/25/2026,60,10,25,$3.10,65,30,2.10%
+Goose Eggs,Dairy,HenHouse,5032 Egg Rd,Backordered,06-666-7777,16-777-8888,6/10/2026,6/15/2026,7/30/2026,110,35,55,$3.40,115,85,2.60%
+Plum Juice,Beverages,Juicy,5033 Citrus Ave,Active,07-777-8888,17-888-9999,7/5/2026,7/10/2026,8/25/2026,95,25,45,$3.60,100,60,2.30%
+Veal Chop,Meat,PoultryPro,5034 Farm Rd,Discontinued,08-888-9999,18-999-0000,8/1/2026,8/10/2026,9/20/2026,75,20,40,$16.00,80,55,2.40%
