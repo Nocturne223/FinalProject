@@ -74,3 +74,8 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+
+# Ignore copied build/web files in web/
+web/assets/
+web/canvaskit/
+web/icons/
