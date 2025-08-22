@@ -37,14 +37,6 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Intellistock'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              // TODO: Implement search functionality
-            },
-          ),
-        ],
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.lightSurface,
       ),
