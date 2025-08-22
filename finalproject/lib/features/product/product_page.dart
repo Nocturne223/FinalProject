@@ -4,6 +4,7 @@ import 'package:finalproject/core/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../core/models/product.model.dart';
+import '../../../core/infrastructure/export/product_exporter.dart';
 import 'widgets/product_list_item.dart';
 import 'widgets/add_edit_product_dialog.dart';
 import 'widgets/product_search_bar.dart';
@@ -50,6 +51,13 @@ class _ProductPageState extends State<ProductPage> {
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.lightSurface,
         elevation: 2,
+        actions: [
+          IconButton(
+            tooltip: 'Export Products CSV',
+            icon: const Icon(Icons.download),
+            onPressed: () => ProductExporter.exportAllProducts(context),
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -275,6 +283,7 @@ class _ProductPageState extends State<ProductPage> {
         const SizedBox(height: 4),
         DropdownButtonFormField<String>(
           value: currentValue,
+          isExpanded: true,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 12,
