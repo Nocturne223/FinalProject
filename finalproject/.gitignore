@@ -43,3 +43,18 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Ignore generated web build files if copied to web/
+web/flutter.js
+web/flutter_bootstrap.js
+web/flutter_service_worker.js
+web/main.dart.js
+web/version.json
+web/AssetManifest.json
+web/AssetManifest.bin
+web/AssetManifest.bin.json
+web/favicon.png
+web/manifest.json
+web/canvaskit/
+web/assets/
+web/icons/
